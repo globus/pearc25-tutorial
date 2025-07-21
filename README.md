@@ -13,8 +13,8 @@ As illustrated in the picture below, the flow comprises the following actions:
 
 ![Imsage showing the actions in a Globus flow that processes images coming from an instrument](/img/instrument_demostration_flow.png?raw=true "Instrument Data Processing Flow")
 
-The flow is triggered by the creation of a file with the specified name/pattern in the directory that the [trigger script](/pearc25-tutorial/blob/main/trigger.py) is watching. For example, to run the flow when a JPG image file is created in the `/Microscope` directory, run:
+The flow is triggered by the creation of a file with the specified name/pattern in the directory that the [trigger script](https://github.com/globus/pearc25-tutorial/blob/main/trigger.py) is watching. For example, to run the flow when a JPG image file is created in the `/Microscope` directory, run:
 
 `python .\trigger.py --watchdir /Microscope --patterns .jpg`
 
-To run the flow you must edit the [trigger script](/pearc25-tutorial/blob/main/trigger.py) and provide/confirm the values for inputs flagged with a `# TODO` comment.
+To run the flow you must edit the [trigger script](https://github.com/globus/pearc25-tutorial/blob/main/trigger.py) and provide/confirm the values for inputs flagged with a `# TODO` comment.

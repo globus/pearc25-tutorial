@@ -1,1 +1,19 @@
-ID of GCP Guest Collection on laptop: 
+Use this file to save IDs and other info about your automation environment.
+
+UUID of GCP guest collection on laptop: 
+(this will be the source collection ID in the trigger script)
+
+Service account UUID: 
+
+Service account identity: UUID@clients.auth.globus.org
+
+Service account secret: 
+
+UUID of GCP guest collection on VM:
+(this will be the destination collection ID in the trigger script)
+
+UUID of Globus Compute endpoint on VM:
+
+UUID of Globus Compute registered function: 
+
+UUID of Globus Flow:

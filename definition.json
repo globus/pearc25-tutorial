@@ -1,0 +1,114 @@
+{
+    "Comment": "Transfer, process and distribute/share files",
+    "StartAt": "TransferRaw",
+    "States": {
+        "TransferRaw": {
+            "Comment": "Transfer raw data to a Globus Compute endpoint",
+            "Type": "Action",
+            "ActionUrl": "https://transfer.actions.globus.org/transfer",
+            "Parameters": {
+                "source_endpoint.$": "$.input.source.id",
+                "destination_endpoint.$": "$.input.destination.id",
+                "DATA": [
+                    {
+                        "source_path.$": "$.input.source.path",
+                        "destination_path.$": "$.input.destination.path"
+                    }
+                ]
+            },
+            "ResultPath": "$.TransferRaw",
+            "WaitTime": 60,
+            "Next": "ProcessFiles"
+        },
+        "ProcessFiles": {
+            "Comment": "Process files by invoking a Globus Compute function",
+            "Type": "Action",
+            "ActionUrl": "https://compute.actions.globus.org/fxap",
+            "Parameters": {
+                "endpoint.$": "$.input.compute_endpoint_id",
+                "function.$": "$.input.compute_function_id",
+                "kwargs.$": "$.input.compute_function_kwargs"
+            },
+            "ResultPath": "$.ProcessFiles",
+            "WaitTime": 180,
+            "Next": "TransferResults"
+        },
+        "TransferResults": {
+            "Comment": "Transfer processed files to a guest collection",
+            "Type": "Action",
+            "ActionUrl": "https://transfer.actions.globus.org/transfer",
+            "Parameters": {
+                "source_endpoint.$": "$.input.destination.id",
+                "destination_endpoint.$": "$.input.resultshare.id",
+                "DATA": [
+                    {
+                        "source_path.$": "$.input.destination.path",
+                        "destination_path.$": "$.input.resultshare.path"
+                    }
+                ]
+            },
+            "ResultPath": "$.TransferResults",
+            "WaitTime": 60,
+            "Next": "ShareResultFiles"
+        },
+        "ShareResultFiles": {
+            "Comment": "Grant read permission on the data to a Globus user or group",
+            "Type": "Action",
+            "ActionUrl": "https://transfer.actions.globus.org/manage_permission",
+            "Parameters": {
+                "operation": "CREATE",
+                "endpoint_id.$": "$.input.resultshare.id",
+                "path.$": "$.input.resultshare.path",
+                "permissions": "r",
+                "principal_type.$": "$.input.principal.type",
+                "principal.$": "$.input.principal.id"
+            },
+            "ResultPath": "$.ShareResultFiles",
+            "Next": "SearchIngest"
+        },
+        "SearchIngest": {
+            "Comment": "Ingest metadata to a Globus Search index",
+            "Type": "Action",
+            "ActionUrl": "https://actions.globus.org/search/ingest",
+            "Parameters": {
+                "search_index.$": "$.input.search_ingest_document.search_index",
+                "subject.$": "$.input.search_ingest_document.search_subject",
+                "visible_to.$": "$.input.search_ingest_document.search_visible_to",
+                "content.$": "$.input.search_ingest_document.search_content_metadata",
+                "id.$": "$.input.search_ingest_document.search_entry_id"
+            },
+            "ResultPath": "$.SearchIngest",
+            "Next": "SearchIngestRestricted"
+        },
+        "SearchIngestRestricted": {
+            "Comment": "Ingest metadata with restricted visibility to a Globus Search index",
+            "Type": "Action",
+            "ActionUrl": "https://actions.globus.org/search/ingest",
+            "Parameters": {
+                "search_index.$": "$.input.search_ingest_document.search_index",
+                "subject.$": "$.input.search_ingest_document.search_subject",
+                "visible_to.$": "$.input.search_ingest_document.search_restricted_visible_to",
+                "content.$": "$.input.search_ingest_document.search_content_restricted_metadata",
+                "id.$": "$.input.search_ingest_document.search_restricted_entry_id"
+            },
+            "ResultPath": "$.SearchIngestRestricted",
+            "Next": "DeleteScratchData"
+        },
+        "DeleteScratchData": {
+            "Comment": "Remove the processed files from the compute node",
+            "Type": "Action",
+            "ActionUrl": "https://transfer.actions.globus.org/delete",
+            "Parameters": {
+                "endpoint.$": "$.input.destination.id",
+                "recursive": true,
+                "DATA": [
+                    {
+                        "path.$": "$.input.destination.path"
+                    }
+                ]
+            },
+            "ResultPath": "$.DeleteScratchData",
+            "End": true
+        }
+    }
+}

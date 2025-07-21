@@ -1,0 +1,177 @@
+{
+    "required": [
+        "input"
+    ],
+    "properties": {
+        "input": {
+            "type": "object",
+            "required": [
+                "source",
+                "destination",
+                "trigger_filename",
+                "compute_endpoint_id",
+                "compute_function_id",
+                "compute_function_kwargs",
+                "resultshare",
+                "principal",
+                "search_ingest_document"
+            ],
+            "properties": {
+                "source": {
+                    "type": "object",
+                    "title": "Select source collection and path",
+                    "description": "The raw data collection and path (e.g., on the instrument).",
+                    "format": "globus-collection",
+                    "required": [
+                        "id",
+                        "path"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "destination": {
+                    "type": "object",
+                    "title": "Select destination collection and path",
+                    "description": "The collection and path on the Globus Compute endpoint.",
+                    "format": "globus-collection",
+                    "required": [
+                        "id",
+                        "path"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "trigger_filename": {
+                    "type": "string",
+                    "title": "Raw image file",
+                    "description": "The name of the file that triggered the flow."
+                },
+                "compute_endpoint_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "title": "Globus Compute Endpoint ID",
+                    "description": "The UUID of the Globus Compute endpoint where the function will run."
+                },
+                "compute_function_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "title": "Globus Compute Function ID",
+                    "description": "The UUID of the function to invoke; must be registered with the Globus Compute service."
+                },
+                "compute_function_kwargs": {
+                    "type": "object",
+                    "title": "Function Inputs",
+                    "description": "Inputs to pass to the function.",
+                    "properties": {},
+                    "additionalProperties": true
+                },
+                "resultshare": {
+                    "type": "object",
+                    "title": "Results sharing destination collection and path",
+                    "description": "The collection and path for sharing the result files.",
+                    "format": "globus-collection",
+                    "required": [
+                        "id",
+                        "path"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "principal": {
+                    "type": "object",
+                    "title": "Select a sharee (an individual, group or application)",
+                    "format": "globus-principal",
+                    "description": "Select group/identity to share with (currently only works with a single sharee)."
+                },
+                "search_ingest_document": {
+                    "type": "object",
+                    "title": "Search ingest document",
+                    "description": "The subject and metadata to be ingested into Globus Search",
+                    "required": [
+                        "search_index",
+                        "search_subject",
+                        "search_entry_id",
+                        "search_visible_to",
+                        "search_content_metadata",
+                        "search_restricted_entry_id",
+                        "search_restricted_visible_to",
+                        "search_content_restricted_metadata"
+                    ],
+                    "properties": {
+                        "search_index": {
+                            "type": "string",
+                            "title": "Globus Search Index ID",
+                            "description": "The UUID of the Globus Search index that will hold this metadata"
+                        },
+                        "search_subject": {
+                            "type": "string",
+                            "title": "Globus Search Subject",
+                            "description": "The target data subject for this index entry"
+                        },
+                        "search_entry_id": {
+                            "type": "string",
+                            "title": "Entry ID",
+                            "description": "Unique id for the public block of metadata"
+                        },
+                        "search_visible_to": {
+                            "type": "array",
+                            "title": "Visible To",
+                            "default": [
+                                "public"
+                            ],
+                            "description": "Globus user(s) or group(s) that can view this metadata"
+                        },
+                        "search_content_metadata": {
+                            "type": "object",
+                            "title": "Search Metadata",
+                            "description": "The metadata for this index entry",
+                            "additionalProperties": true
+                        },
+                        "search_restricted_entry_id": {
+                            "type": "string",
+                            "title": "Restricted Entry ID",
+                            "description": "Unique id for the restricted block of metadata"
+                        },
+                        "search_restricted_visible_to": {
+                            "type": "array",
+                            "title": "Visible To (for restricted metadata)",
+                            "description": "Globus user(s) or group(s) that can view this restricted metadata"
+                        },
+                        "search_content_restricted_metadata": {
+                            "type": "object",
+                            "title": "Restricted Search Metadata",
+                            "description": "The restricted metadata for this index entry",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

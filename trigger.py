@@ -12,9 +12,6 @@ import uuid
 CLIENT_ID = "YOUR_SERVICE_ACCOUNT_ID"
 CLIENT_SECRET = "YOUR_SERVICE_ACCOUNT_SECRET"
 
-CLIENT_ID = "18f1cce1-4211-4e45-a4e3-f8cf52ed83c8"
-CLIENT_SECRET = "Sm5zHmqMCFkWeUegGWRjUX6qRgBrxZaCDIEz+vonySU="
-
 '''
 The script will run flow actions as the authenticated user, 
 i.e., using a Native App authentication flow. If CLIENT_SECRET is specified, 
@@ -101,7 +98,6 @@ def run_flow(event_file):
 
     # TODO: Specify the flow to run when triggered
     flow_id = "REPLACE_WITH_FLOW_ID"
-    flow_id = "5a700086-e8e5-4fc6-9c62-7c99860356c9"
     
     # Instantiate a Globus Flows client for the specific flow ID above
     fc = globus_sdk.SpecificFlowClient(flow_id, app=GLOBUS_APP)
@@ -120,7 +116,6 @@ def run_flow(event_file):
     # TODO: Modify source collection ID
     # Guest collection on the GCP endpoint where this trigger script is running
     source_id = "REPLACE_WITH_SOURCE_GUEST_COLLECTION_ID"
-    source_id = "9babf50f-1008-11f0-a4da-02f84ea2e2ad"
 
     # TODO: Modify the source path on the guest collection
     # The default is "/", assuming the guest collection base path is
@@ -130,18 +125,15 @@ def run_flow(event_file):
     # TODO: Modify source collection ID
     # Guest collection on GCP endpoint on Compute node (rooted at ~/scratch)
     destination_id = "REPLACE_WITH_DESTINATION_GUEST_COLLECTION_ID"
-    destination_id = "c349f501-65be-11f0-a06f-0affd01ebe25"
     
     # TODO: Modify destination collection path
     destination_path = f"/{sample_id}/"
 
     # TODO: Modify Globus Compute endpoint ID
     compute_endpoint_id = "REPLACE_WITH_COMPUTE_ENDPOINT_ID"
-    compute_endpoint_id = "956c3569-a1d1-42cd-9b5e-a744e4f3ca66"
 
     # TODO: Modify Globus Compute registered function ID
     compute_function_id = "REPLACE_WITH_REGISTERED_FUNCTION_ID"
-    compute_function_id = "ad7e5598-163d-4a91-80f2-9653a6473688"
 
     # Final data are published on Tutorial Guest Collection
     resultshare_id = "fe2feb64-4ac0-4a40-ba90-94b99d06dd2c"

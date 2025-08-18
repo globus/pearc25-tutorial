@@ -111,7 +111,7 @@ def run_flow(event_file):
     run_time = str(time.time())[:str(time.time()).find('.')]
 
     # Set a label for the flow run
-    flow_label = f"YOUR_TITLE_HERE: {sample_id}"
+    flow_label = f"YOUR_LABEL_HERE: {sample_id}"
 
     # TODO: Modify source collection ID
     # Guest collection on the GCP endpoint where this trigger script is running
@@ -136,7 +136,7 @@ def run_flow(event_file):
     compute_function_id = "REPLACE_WITH_REGISTERED_FUNCTION_ID"
 
     # Final data are published on Tutorial Guest Collection
-    resultshare_id = "fe2feb64-4ac0-4a40-ba90-94b99d06dd2c"
+    resultshare_id = "REPLACE_WITH_PUBLICATION_GUEST_COLLECTION_ID"
     http_hostname = "https://g-13a6e8.f9e26.5898.data.globus.org"
     resultshare_path = f"/instrument-data/{sample_id}/"
 
@@ -245,4 +245,5 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+
 

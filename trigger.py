@@ -111,7 +111,7 @@ def run_flow(event_file):
     run_time = str(time.time())[:str(time.time()).find('.')]
 
     # Set a label for the flow run
-    flow_label = f"PEARC25: {sample_id}"
+    flow_label = f"YOUR_TITLE_HERE: {sample_id}"
 
     # TODO: Modify source collection ID
     # Guest collection on the GCP endpoint where this trigger script is running
@@ -245,3 +245,4 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+

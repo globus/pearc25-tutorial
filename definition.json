@@ -17,7 +17,7 @@
                 ]
             },
             "ResultPath": "$.TransferRaw",
-            "WaitTime": 60,
+            "WaitTime": 180,
             "Next": "ProcessFiles"
         },
         "ProcessFiles": {
@@ -48,7 +48,7 @@
                 ]
             },
             "ResultPath": "$.TransferResults",
-            "WaitTime": 60,
+            "WaitTime": 180,
             "Next": "ShareResultFiles"
         },
         "ShareResultFiles": {

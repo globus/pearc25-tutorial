@@ -135,9 +135,9 @@ def run_flow(event_file):
     # TODO: Modify Globus Compute registered function ID
     compute_function_id = "REPLACE_WITH_REGISTERED_FUNCTION_ID"
 
-    # Final data are published on Tutorial Guest Collection
+    # Final data are published on another guest collection
     resultshare_id = "REPLACE_WITH_PUBLICATION_GUEST_COLLECTION_ID"
-    http_hostname = "https://g-13a6e8.f9e26.5898.data.globus.org"
+    http_hostname = "REPLACE_WITH_PUBLICATION_GUEST_COLLECTION_HTTPS_URL"
     resultshare_path = f"/instrument-data/{sample_id}/"
 
     # Final data are accessible by members of the Tutorial Users group
@@ -245,5 +245,6 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+
 
 

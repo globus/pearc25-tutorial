@@ -136,8 +136,8 @@ def run_flow(event_file):
     compute_function_id = "REPLACE_WITH_REGISTERED_FUNCTION_ID"
 
     # Final data are published on another guest collection
-    resultshare_id = "REPLACE_WITH_PUBLICATION_COLLECTION_ID"
-    http_hostname = "REPLACE_WITH_PUBLICATION_COLLECTION_HTTPS_URL"
+    resultshare_id = "43323ab6-0d6b-44f5-a50e-6d57cb6af2b6"
+    http_hostname = "https://g-1eab33.f9e26.5898.data.globus.org"
     resultshare_path = f"/instrument-data/{sample_id}/"
 
     # Final data are accessible by members of the Tutorial Users group
@@ -169,8 +169,8 @@ def run_flow(event_file):
             "compute_endpoint_id": compute_endpoint_id,
             "compute_function_id": compute_function_id,
             "compute_function_kwargs": {
-                "input_path": f"/home/dev2/scratch{destination_path}",
-                "result_path": f"/home/dev2/scratch{destination_path}results",
+                "input_path": f"/home/devN/scratch{destination_path}",
+                "result_path": f"/home/devN/scratch{destination_path}results",
             },
             "resultshare": {
                 "id": resultshare_id,
@@ -245,6 +245,7 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+
 
 
 

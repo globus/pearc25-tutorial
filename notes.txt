@@ -4,7 +4,6 @@ UUID of GCP guest collection on laptop:
 (this will be the source collection ID in the trigger script)
 
 Service account UUID: 
-
 Service account identity: UUID@clients.auth.globus.org
 
 Service account secret: 

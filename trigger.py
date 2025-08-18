@@ -196,7 +196,7 @@ def run_flow(event_file):
     flow_run_request = fc.run_flow(
         body=flow_input,
         label=flow_label,
-        tags=["Trigger_tutorial", "PEARC25"],  # TODO: Add your own tags here
+        tags=["Trigger_tutorial", "CLASS"],  # TODO: Add your own tags here
     )
     print(
         f"\nTransferring and processing run ID {sample_id}: {open_metadata['spec_species']} {open_metadata['spec_organ']}"
@@ -245,6 +245,7 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+
 
 
 

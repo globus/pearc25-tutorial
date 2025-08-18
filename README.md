@@ -1,4 +1,4 @@
-A Globus flow and associated watchdog trigger script for processing an image. Used at the PEARC25 tutorial.
+A Globus flow and associated watchdog trigger script for processing an image.
 
 As illustrated in the picture below, the flow comprises the following actions:
 

@@ -136,8 +136,8 @@ def run_flow(event_file):
     compute_function_id = "REPLACE_WITH_REGISTERED_FUNCTION_ID"
 
     # Final data are published on another guest collection
-    resultshare_id = "REPLACE_WITH_PUBLICATION_GUEST_COLLECTION_ID"
-    http_hostname = "REPLACE_WITH_PUBLICATION_GUEST_COLLECTION_HTTPS_URL"
+    resultshare_id = "REPLACE_WITH_PUBLICATION_COLLECTION_ID"
+    http_hostname = "REPLACE_WITH_PUBLICATION_COLLECTION_HTTPS_URL"
     resultshare_path = f"/instrument-data/{sample_id}/"
 
     # Final data are accessible by members of the Tutorial Users group
@@ -245,6 +245,7 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+
 
 
 

@@ -205,7 +205,7 @@ def run_flow(event_file):
         f"Manage this run on Globus web app:\nhttps://app.globus.org/runs/{flow_run_request['run_id']}"
     )
     print(
-        f"View published data:\nhttps://sc24-globus.github.io/experiment/search?q={sample_id}"
+        f"View published data:\nhttps://vasv.github.io/class-search-portal/search?q={sample_id}"
     )
 
 
@@ -245,6 +245,7 @@ if __name__ == "__main__":
         FlowRunner=run_flow,
     )
     trigger.run()
+
 
 
 
